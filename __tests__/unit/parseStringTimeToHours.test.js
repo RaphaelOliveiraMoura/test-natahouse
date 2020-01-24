@@ -1,6 +1,6 @@
 import parseStringTimeToHours from '~/utils/parseStringTimeToHours';
 
-it('should be parse a string time value to hours', () => {
+it('should able to parse a string time value to hours', () => {
   expect(parseStringTimeToHours('5 years')).toEqual(5 * 365 * 24);
   expect(parseStringTimeToHours('1 year')).toEqual(1 * 365 * 24);
   expect(parseStringTimeToHours('5 months')).toEqual(5 * 30 * 24);

@@ -1,15 +1,15 @@
 const mappedDateStringToHours = [
-  { regex: /year(s)?/gi, value: 365 * 24 },
-  { regex: /month(s)?/gi, value: 30 * 24 },
-  { regex: /week(s)?/gi, value: 7 * 24 },
-  { regex: /day(s)?/gi, value: 24 },
-  { regex: /hour(s)?/gi, value: 1 },
+  { regex: /year(s)?/gi, hours: 365 * 24 },
+  { regex: /month(s)?/gi, hours: 30 * 24 },
+  { regex: /week(s)?/gi, hours: 7 * 24 },
+  { regex: /day(s)?/gi, hours: 24 },
+  { regex: /hour(s)?/gi, hours: 1 },
 ];
 
 export default function parseStringTimeToHours(timeString) {
   const mathExpressionString = mappedDateStringToHours.reduce(
-    (accumulator, { regex, value }) => {
-      return accumulator.replace(regex, `* ${value}`);
+    (accumulator, { regex, hours }) => {
+      return accumulator.replace(regex, `* ${hours}`);
     },
     timeString
   );
