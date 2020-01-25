@@ -2,6 +2,7 @@ import React from 'react';
 import { MdSearch } from 'react-icons/md';
 
 import Input from '~/components/Input';
+import Carousel from '~/components/Carousel';
 
 import startWarsLogo from '~/assets/startwars-logo.png';
 
@@ -11,20 +12,24 @@ export default function Home() {
   return (
     <Container>
       <div className="content">
-        <div className="image-container">
-          <img src={startWarsLogo} alt="Star Wars" />
+        <div className="header">
+          <div className="image-container">
+            <img src={startWarsLogo} alt="Star Wars" />
+          </div>
+
+          <div className="search-container">
+            <h1>
+              Encontre as mais diversas e incríveis naves espaciais presentes na
+              saga Star Wars
+            </h1>
+            <Input
+              placeholder="nome da nave que deseja encontrar..."
+              icon={<MdSearch color="#333333" size={20} />}
+            />
+          </div>
         </div>
 
-        <div className="search-container">
-          <h1>
-            Encontre as mais diversas e incríveis naves espaciais presentes na
-            saga Star Wars
-          </h1>
-          <Input
-            placeholder="nome da nave que deseja encontrar..."
-            icon={<MdSearch color="#333333" size={20} />}
-          />
-        </div>
+        <Carousel />
       </div>
     </Container>
   );

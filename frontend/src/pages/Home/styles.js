@@ -9,6 +9,12 @@ export const Container = styled(BackgroundContainer)`
     width: 100%;
     max-width: 1000px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .header {
+    display: flex;
     justify-content: space-between;
   }
 
