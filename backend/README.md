@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  Frontend application
+  Backend application
 </h3>
 
 <p align="center">
@@ -21,6 +21,7 @@
 ```
   ~ yarn install
 
+  ~ yarn build
   ~ yarn start
 ```
 
@@ -30,20 +31,41 @@
 
 ```
   ~ git clone https://github.com/RaphaelOliveiraMoura/test-natahouse.git
-  ~ cd test-natahouse/frontend
+  ~ cd test-natahouse/backend
   ~ yarn install (or npm install)
 ```
 
 ### Prerequisites
 
-You need to have the backend application running, for default it runs in localhost:3333, so certify that you have the backend running in this port.
+- NodeJs
+
+First, you need to create a **.env** file in root of application. The structure of this file is similar to the **.env.example** file, just copy and put the correct informations for all variables.
 
 ## Running application
-
-I dont configurate the application to run in production mode, so you can only run that in development mode with:
 
 In development mode:
 
 ```
+  ~ yarn dev
+```
+
+In production mode:
+
+```
+  ~ yarn build
   ~ yarn start
 ```
+
+## Running tests
+
+You can run the application tests with:
+
+```
+  ~ yarn test
+```
+
+# 📗 Documentation
+
+There is a file called `insomnia.json` in the root of application, that is the exported documentation of [insomnia](https://insomnia.rest/).
+
+Insomnia is a software similar to postman, you use that to test the requests to your application server side, seeing the response for each route with it params.
