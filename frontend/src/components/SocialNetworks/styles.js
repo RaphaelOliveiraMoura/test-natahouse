@@ -17,4 +17,10 @@ export const Container = styled.div`
   a + a {
     margin-left: 16px;
   }
+
+  @media (max-width: 600px) {
+    & {
+      display: none;
+    }
+  }
 `;

@@ -12,10 +12,15 @@ export const Container = styled.div`
     color: #333;
   }
 
+  input:focus ~ svg {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
   svg {
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
+    transition: all 0.2s;
   }
 `;

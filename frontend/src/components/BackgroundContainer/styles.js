@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import backgroundVector from '~/assets/background-vector.svg';
 
 export const Container = styled.div`
+  min-height: 100vh;
   width: 100vw;
   height: 100vh;
   position: relative;

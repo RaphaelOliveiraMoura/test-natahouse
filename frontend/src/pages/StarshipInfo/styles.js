@@ -97,6 +97,7 @@ export const Container = styled(BackgroundContainer)`
       color: #bbb;
       max-width: 400px;
       font-size: 12px;
+      margin-top: 16px;
     }
   }
 
@@ -117,6 +118,30 @@ export const Container = styled(BackgroundContainer)`
       margin-left: 26px;
       font-size: 16px;
       animation: rigth-to-left 0.4s forwards;
+    }
+  }
+
+  @media (max-width: 660px) {
+    & {
+      height: auto;
+    }
+
+    .card-body {
+      flex-direction: column-reverse;
+
+      img {
+        margin-bottom: 12px;
+      }
+    }
+
+    .calculate-container {
+      flex-direction: column;
+      align-items: flex-start;
+
+      p {
+        max-width: 100%;
+        margin-left: 0;
+      }
     }
   }
 
