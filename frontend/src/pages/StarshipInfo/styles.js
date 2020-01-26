@@ -21,6 +21,7 @@ export const Container = styled(BackgroundContainer)`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    overflow: hidden;
   }
 
   .card h1 {
@@ -28,6 +29,7 @@ export const Container = styled(BackgroundContainer)`
     font-weight: lighter;
     margin: 16px;
     font-size: 42px;
+    animation: fade 0.8s forwards;
   }
 
   .card svg {
@@ -35,6 +37,11 @@ export const Container = styled(BackgroundContainer)`
     position: absolute;
     right: 32px;
     top: 32px;
+    transition: all 0.4s;
+  }
+
+  .card svg:hover {
+    transform: translateX(-4px);
   }
 
   .card-body {
@@ -47,7 +54,7 @@ export const Container = styled(BackgroundContainer)`
     p {
       color: #fff;
       font-size: 16px;
-      animation: slider-in 0.8s;
+      animation: left-to-rigth 0.8s;
       animation-fill-mode: forwards;
       transform: translateX(-1000px);
     }
@@ -78,23 +85,13 @@ export const Container = styled(BackgroundContainer)`
 
     img {
       width: 200px;
-    }
-  }
-
-  @keyframes slider-in {
-    0% {
-      transform: translateX(-100px);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translateX(0px);
-      opacity: 1;
+      animation: shake 0.6s forwards;
     }
   }
 
   .card-footer {
     width: 100%;
+    animation: bottom-to-top 0.6s forwards;
 
     p {
       color: #bbb;
@@ -123,6 +120,18 @@ export const Container = styled(BackgroundContainer)`
     }
   }
 
+  @keyframes left-to-rigth {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+
   @keyframes rigth-to-left {
     0% {
       transform: translateX(500px);
@@ -130,6 +139,44 @@ export const Container = styled(BackgroundContainer)`
 
     100% {
       transform: translateX(0);
+    }
+  }
+
+  @keyframes bottom-to-top {
+    0% {
+      transform: translateY(500px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: skew(0deg, 2deg) rotate(0deg) scale(1);
+      opacity: 0;
+    }
+
+    50% {
+      transform: translateX(-4px) skew(2deg, 0deg) rotate(-4deg) scale(1.05);
+    }
+
+    100% {
+      transform: skew(0deg, 0deg) rotate(0deg) scale(1);
+      opacity: 1;
     }
   }
 `;

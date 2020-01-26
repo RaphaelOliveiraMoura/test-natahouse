@@ -37,7 +37,7 @@ export default function Carousel({
       if (window.innerWidth > 1000) {
         setListSize(5);
       } else if (window.innerWidth > 750) {
-        setListSize(4);
+        setListSize(3);
       } else if (window.innerWidth > 400) {
         setListSize(2);
       } else {

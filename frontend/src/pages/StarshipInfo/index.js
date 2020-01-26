@@ -16,6 +16,8 @@ export default function StarshipInfo({ location }) {
   const [distance, setDistance] = useState('');
   const [stops, setStops] = useState(null);
 
+  const canCalculateStops = starship.MGLT !== 'unknown';
+
   if (!starship) {
     history.push('/');
   }
@@ -71,31 +73,35 @@ export default function StarshipInfo({ location }) {
         </div>
 
         <div className="card-footer">
-          <p>
-            Descubra quantos paradas são necessárias para essa nave completar
-            uma jornada, digitando a distância da jornada abaixo:
-          </p>
-          <div className="calculate-container">
-            <Input
-              type="number"
-              placeholder="digite a distância em mega lights...."
-              value={distance}
-              onChange={e => {
-                const { value } = e.target;
-                if (Number(value) <= 99999999999) {
-                  setDistance(value);
-                  getStarshipStops(value);
-                }
-              }}
-            />
-            {stops !== null && distance && (
+          {canCalculateStops && (
+            <>
               <p>
-                Para percorrer {distance} MGLT com essa nave, são
-                necessárias&nbsp;
-                {stops} parada(s)
+                Descubra quantos paradas são necessárias para essa nave
+                completar uma jornada, digitando a distância da jornada abaixo:
               </p>
-            )}
-          </div>
+              <div className="calculate-container">
+                <Input
+                  type="number"
+                  placeholder="digite a distância em mega lights...."
+                  value={distance}
+                  onChange={e => {
+                    const { value } = e.target;
+                    if (Number(value) <= 99999999999) {
+                      setDistance(value);
+                      getStarshipStops(value);
+                    }
+                  }}
+                />
+                {stops !== null && distance && (
+                  <p>
+                    Para percorrer {distance} MGLT com essa nave, são
+                    necessárias&nbsp;
+                    {stops} parada(s)
+                  </p>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </Container>
@@ -112,6 +118,7 @@ StarshipInfo.propTypes = {
         cargo_capacity: PropTypes.string,
         films: PropTypes.arrayOf(PropTypes.string),
         passengers: PropTypes.string,
+        MGLT: PropTypes.string,
       }),
     }),
   }),
