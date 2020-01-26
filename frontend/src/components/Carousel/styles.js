@@ -3,45 +3,97 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
 
   svg {
     cursor: pointer;
   }
 
-  .card {
-    height: 200px;
+  .list-container {
     display: flex;
-    flex-direction: column;
-    margin: 16px;
-    border-radius: 12px;
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #490808;
-    cursor: pointer;
-    box-shadow: 1px 2px 1px 2px #0a080861;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    filter: ${props => (props.isLoading ? 'blur(2px)' : '')};
   }
 
-  .card:hover {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0004;
+    z-index: 10;
+    transition: all 0.2s;
+    transform: ${props =>
+      props.isLoading ? 'translateX(0)' : 'translateX(-1000px)'};
+  }
+
+  .list-container::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #eb314c;
+    border-color: #eb314c transparent #eb314c transparent;
+    animation: dual-ring 1.2s linear infinite;
+    z-index: 9999;
+    display: ${props => (props.isLoading ? 'block' : 'none')};
+  }
+
+  @keyframes dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+export const Card = styled.div`
+  height: 200px;
+  width: 150px;
+  display: ${props => (props.listShow ? 'flex' : 'none')};
+  flex-direction: column;
+  margin: 16px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #490808;
+  cursor: pointer;
+  box-shadow: 1px 2px 1px 2px #0a080861;
+
+  &:hover {
     animation: skew-animation 0.4s;
   }
 
   @keyframes skew-animation {
     0% {
-      transform: skew(0deg, 2deg) rotate(0deg);
+      transform: skew(0deg, 2deg) rotate(0deg) scale(1);
     }
 
     50% {
-      transform: skew(2deg, 0deg) rotate(4deg);
+      transform: skew(2deg, 0deg) rotate(4deg) scale(1.05);
     }
 
     100% {
-      transform: skew(0deg, 2deg) rotate(0deg);
+      transform: skew(0deg, 2deg) rotate(0deg) scale(1);
     }
   }
 
-  .card .card-body {
+  & .card-body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,25 +102,25 @@ export const Container = styled.div`
     padding: 16px;
   }
 
-  .card h1 {
+  & h1 {
     margin-top: 12px;
     font-size: 18px;
     font-weight: lighter;
   }
 
-  .card .card-body > svg {
+  & .card-body > svg {
     align-self: flex-end;
     opacity: 0;
     transform: translateX(-80px);
     transition: transform 0.8s;
   }
 
-  .card:hover .card-body > svg {
+  &:hover .card-body > svg {
     opacity: 1;
     transform: translateX(0px);
   }
 
-  .card footer {
+  & footer {
     background: #000000;
     height: 60px;
 

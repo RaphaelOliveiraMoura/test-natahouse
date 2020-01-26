@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
@@ -6,34 +7,118 @@ import {
   MdArrowForward,
 } from 'react-icons/md';
 
-import { Container } from './styles';
+import { Container, Card } from './styles';
 
-const items = [
-  { id: 1, name: 'Sentinel-class landing craft', price: 100000000 },
-  { id: 2, name: 'Item2', price: 100000000 },
-  { id: 3, name: 'Item3', price: 100000000 },
-  { id: 4, name: 'Item4', price: 100000000 },
-  { id: 5, name: 'Item5', price: 100000000 },
-];
+export default function Carousel({
+  starships,
+  loadMore,
+  clearOnChange,
+  loading,
+  ...rest
+}) {
+  const [offset, setOffset] = useState(0);
 
-export default function Carousel() {
+  const [listSize, setListSize] = useState(4);
+
+  const nextIsAble = useMemo(() => {
+    return offset + listSize < starships.length;
+  }, [listSize, offset, starships.length]);
+
+  const previusIsAble = useMemo(() => {
+    return offset > 0;
+  }, [offset]);
+
+  useEffect(() => {
+    setOffset(0);
+  }, [clearOnChange]);
+
+  useEffect(() => {
+    function resizeListSize() {
+      if (window.innerWidth > 1000) {
+        setListSize(5);
+      } else if (window.innerWidth > 750) {
+        setListSize(4);
+      } else if (window.innerWidth > 400) {
+        setListSize(2);
+      } else {
+        setListSize(1);
+      }
+    }
+
+    window.addEventListener('resize', resizeListSize);
+    resizeListSize();
+  }, []);
+
+  function hanldleNext() {
+    if (nextIsAble) setOffset(offset + 1);
+
+    if (offset + 7 === starships.length) {
+      loadMore();
+    }
+  }
+
+  function handlePrevius() {
+    if (previusIsAble) setOffset(offset - 1);
+  }
+
   return (
-    <Container>
-      <MdKeyboardArrowLeft color="#D6CACA" size={30} />
-      {items.map(item => (
-        <div className="card" key={String(item.id)}>
-          <div className="card-body">
-            <h1>{item.name}</h1>
-            <MdArrowForward color="#333" size={30} />
-          </div>
+    <Container {...rest} isLoading={loading}>
+      <MdKeyboardArrowLeft
+        color="#D6CACA"
+        size={30}
+        onClick={handlePrevius}
+        style={{
+          transform: previusIsAble ? 'translateX(0px)' : 'translateX(100000px)',
+        }}
+      />
 
-          <footer>
-            <p>{item.price}</p>
-            <MdMonetizationOn size={20} color="#fff" />
-          </footer>
-        </div>
-      ))}
-      <MdKeyboardArrowRight color="#D6CACA" size={30} />
+      <div className="list-container">
+        {starships.map((item, index) => (
+          <Card
+            key={String(item.name)}
+            listShow={index >= offset && index < offset + listSize}
+          >
+            <div className="card-body">
+              <h1>{item.name}</h1>
+              <MdArrowForward color="#333" size={30} />
+            </div>
+
+            <footer>
+              <p>{item.cost_in_credits}</p>
+              <MdMonetizationOn size={20} color="#fff" />
+            </footer>
+          </Card>
+        ))}
+      </div>
+
+      <MdKeyboardArrowRight
+        color="#D6CACA"
+        size={30}
+        onClick={hanldleNext}
+        style={{
+          transform: nextIsAble ? 'translateX(0px)' : 'translateX(100000px)',
+        }}
+      />
     </Container>
   );
 }
+
+Carousel.propTypes = {
+  starships: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.id,
+      name: PropTypes.string,
+      cost_in_credits: PropTypes.string,
+    })
+  ),
+  loadMore: PropTypes.func,
+  clearOnChange: PropTypes.string,
+  loading: PropTypes.bool,
+};
+
+Carousel.defaultProps = {
+  starships: [],
+  loadMore: () => {},
+  clearOnChange: () => {},
+  loading: false,
+};
