@@ -81,15 +81,17 @@ export default function Carousel({
               history.push(`/starships/${item.name}`, { starship: item })
             }
           >
-            <div className="card-body">
-              <h1>{item.name}</h1>
-              <MdArrowForward color="#333" size={30} />
-            </div>
+            <div className="card-container">
+              <div className="card-body">
+                <h1>{item.name}</h1>
+                <MdArrowForward color="#333" size={30} />
+              </div>
 
-            <footer>
-              <p>{item.cost_in_credits}</p>
-              <MdMonetizationOn size={20} color="#fff" />
-            </footer>
+              <footer>
+                <p>{item.cost_in_credits}</p>
+                <MdMonetizationOn size={20} color="#fff" />
+              </footer>
+            </div>
           </Card>
         ))}
       </div>

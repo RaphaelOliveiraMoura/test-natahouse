@@ -42,6 +42,7 @@ export const Container = styled(BackgroundContainer)`
 
   .card svg:hover {
     transform: translateX(-4px);
+    padding-right: 4px;
   }
 
   .card-body {
@@ -117,7 +118,7 @@ export const Container = styled(BackgroundContainer)`
       max-width: 200px;
       margin-left: 26px;
       font-size: 16px;
-      animation: rigth-to-left 0.4s forwards;
+      animation: rigth-to-left 2s forwards;
     }
   }
 

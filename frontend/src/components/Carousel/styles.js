@@ -69,14 +69,23 @@ export const Card = styled.div`
   flex-direction: column;
   margin: 16px;
   border-radius: 12px;
-  position: relative;
   overflow: hidden;
-  border: 1px solid #490808;
   cursor: pointer;
-  box-shadow: 1px 2px 1px 2px #0a080861;
 
   &:hover {
     animation: skew-animation 0.4s;
+  }
+
+  & .card-container {
+    animation: appears 2s;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #490808;
+    box-shadow: 1px 2px 1px 2px #0a080861;
+    position: relative;
+    transition: all 0.4s;
   }
 
   @keyframes skew-animation {
@@ -90,6 +99,16 @@ export const Card = styled.div`
 
     100% {
       transform: skew(0deg, 2deg) rotate(0deg) scale(1);
+    }
+  }
+
+  @keyframes appears {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
     }
   }
 
