@@ -81,6 +81,7 @@ export const Card = styled.div`
     height: 100%;
     width: 100%;
     display: flex;
+    border-radius: 12px;
     flex-direction: column;
     border: 1px solid #490808;
     box-shadow: 1px 2px 1px 2px #0a080861;

@@ -11,7 +11,7 @@
     "dev:debug": "nodemon --inspect src/server.js",
     "fix": "eslint --fix 'src/**/*.js'",
     "test": "jest",
-    "test:dev": "jest --watchAll"
+    "test:dev": "jest --coverage --watchAll"
   },
   "dependencies": {
     "axios": "^0.19.2",

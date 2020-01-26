@@ -98,6 +98,9 @@ export const Container = styled(BackgroundContainer)`
       color: #bbb;
       max-width: 400px;
       font-size: 12px;
+    }
+
+    & > p {
       margin-top: 16px;
     }
   }

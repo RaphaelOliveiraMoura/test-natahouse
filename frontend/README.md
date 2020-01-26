@@ -40,7 +40,7 @@ You need to have the backend application running, for default it runs in localho
 
 ## Running application
 
-I dont configurate the application to run in production mode, so you can only run that in development mode with:
+I dont configurated the application to run in production mode, so you can only run that in development mode with:
 
 In development mode:
 

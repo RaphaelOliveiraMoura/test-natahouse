@@ -1,8 +1,6 @@
 import parseStringTimeToHours from '~/utils/parseStringTimeToHours';
 
-export default function getStarshipStops(starship, distance) {
-  const { consumables, MGLT } = starship;
-
+export default function getStarshipStops({ consumables, MGLT }, distance) {
   const stops =
     Number(distance) / (Number(MGLT) * parseStringTimeToHours(consumables));
 

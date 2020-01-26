@@ -10,17 +10,17 @@ class StarshipStopsController {
         .json({ error: 'You need provide a distance' });
     }
 
-    const starship = request.body;
+    const { consumables, MGLT } = request.body;
 
-    if (!starship) {
+    if (!consumables || !MGLT) {
       return response
         .status(400)
-        .json({ error: 'You need provide the starship' });
+        .json({ error: 'You need provide starship informations' });
     }
 
     return response.json({
       distance,
-      stops: getStarshipStops(starship, distance),
+      stops: getStarshipStops({ consumables, MGLT }, distance),
     });
   }
 }
