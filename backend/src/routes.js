@@ -6,6 +6,6 @@ import StarshipStopController from '~/controllers/StarshipStopController';
 const routes = new Router();
 
 routes.get('/starships', StarshipController.index);
-routes.get('/starships/stops', StarshipStopController.index);
+routes.post('/starships/stops', StarshipStopController.show);
 
 export default routes;

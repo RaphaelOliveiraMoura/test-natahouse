@@ -1,9 +1,7 @@
-import startwarsApi from '~/services/startwars.api';
-
 import getStarshipStops from '~/utils/getStarshipStops';
 
 class StarshipStopsController {
-  async index(request, response) {
+  async show(request, response) {
     const { distance } = request.query;
 
     if (!distance) {
@@ -12,16 +10,18 @@ class StarshipStopsController {
         .json({ error: 'You need provide a distance' });
     }
 
-    const apiResponse = await startwarsApi.get('/starships', {
-      params: { format: 'json' },
-    });
+    const starship = request.body;
 
-    const starships = apiResponse.data.results.map(starship => ({
-      ...starship,
+    if (!starship) {
+      return response
+        .status(400)
+        .json({ error: 'You need provide the starship' });
+    }
+
+    return response.json({
+      distance,
       stops: getStarshipStops(starship, distance),
-    }));
-
-    return response.json(starships);
+    });
   }
 }
 

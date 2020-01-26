@@ -9,6 +9,8 @@ import {
 
 import { Container, Card } from './styles';
 
+import history from '~/services/history';
+
 export default function Carousel({
   starships,
   loadMore,
@@ -20,17 +22,15 @@ export default function Carousel({
 
   const [listSize, setListSize] = useState(4);
 
-  const nextIsAble = useMemo(() => {
-    return offset + listSize < starships.length;
-  }, [listSize, offset, starships.length]);
+  const nextIsAble = useMemo(() => offset + listSize < starships.length, [
+    listSize,
+    offset,
+    starships.length,
+  ]);
 
-  const previusIsAble = useMemo(() => {
-    return offset > 0;
-  }, [offset]);
+  const previusIsAble = useMemo(() => offset > 0, [offset]);
 
-  useEffect(() => {
-    setOffset(0);
-  }, [clearOnChange]);
+  useEffect(() => setOffset(0), [clearOnChange]);
 
   useEffect(() => {
     function resizeListSize() {
@@ -77,6 +77,9 @@ export default function Carousel({
           <Card
             key={String(item.name)}
             listShow={index >= offset && index < offset + listSize}
+            onClick={() =>
+              history.push(`/starships/${item.name}`, { starship: item })
+            }
           >
             <div className="card-body">
               <h1>{item.name}</h1>

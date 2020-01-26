@@ -8,7 +8,7 @@ it('should return how many stops a starship need to do to complete a journey', (
   };
 
   const MillenniumStarships = {
-    name: 'illennium Falcon"',
+    name: 'Millennium Falcon"',
     consumables: '2 months',
     MGLT: '75',
   };

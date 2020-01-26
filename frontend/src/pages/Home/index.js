@@ -3,7 +3,7 @@ import { MdSearch } from 'react-icons/md';
 
 import Input from '~/components/Input';
 
-import startWarsLogo from '~/assets/startwars-logo.png';
+import starWarsLogo from '~/assets/starwars-logo.png';
 
 import { Container, StarshipsList } from './styles';
 
@@ -77,7 +77,7 @@ export default function Home() {
       <div className="content">
         <div className="header">
           <div className="image-container">
-            <img src={startWarsLogo} alt="Star Wars" />
+            <img src={starWarsLogo} alt="Star Wars" />
           </div>
 
           <div className="search-container">

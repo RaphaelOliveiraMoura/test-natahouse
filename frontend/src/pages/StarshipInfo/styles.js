@@ -1,0 +1,135 @@
+import styled from 'styled-components';
+
+import BackgroundContainer from '~/components/BackgroundContainer';
+
+export const Container = styled(BackgroundContainer)`
+  padding: 46px 12px;
+
+  &::before {
+    transform: rotate(180deg);
+  }
+
+  .card {
+    background: #000;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    border-radius: 16px;
+    padding: 26px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .card h1 {
+    color: #fff;
+    font-weight: lighter;
+    margin: 16px;
+    font-size: 42px;
+  }
+
+  .card svg {
+    cursor: pointer;
+    position: absolute;
+    right: 32px;
+    top: 32px;
+  }
+
+  .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+
+    p {
+      color: #fff;
+      font-size: 16px;
+      animation: slider-in 0.8s;
+      animation-fill-mode: forwards;
+      transform: translateX(-1000px);
+    }
+
+    p + p {
+      margin-top: 16px;
+    }
+
+    p:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    p:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    p:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    p:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    p:nth-child(5) {
+      animation-delay: 1.6s;
+    }
+
+    img {
+      width: 200px;
+    }
+  }
+
+  @keyframes slider-in {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+
+  .card-footer {
+    width: 100%;
+
+    p {
+      color: #bbb;
+      max-width: 400px;
+      font-size: 12px;
+    }
+  }
+
+  .calculate-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 26px;
+    overflow: hidden;
+
+    & > div {
+      width: 500px;
+    }
+
+    p {
+      max-width: 200px;
+      margin-left: 26px;
+      font-size: 16px;
+      animation: rigth-to-left 0.4s forwards;
+    }
+  }
+
+  @keyframes rigth-to-left {
+    0% {
+      transform: translateX(500px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+`;
