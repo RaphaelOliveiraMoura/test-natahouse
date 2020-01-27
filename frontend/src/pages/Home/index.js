@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdSearch } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import { defer } from 'rxjs';
 
 import Input from '~/components/Input';
 
@@ -20,12 +21,16 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function loadStarships() {
+    function loadStarships() {
+      return api.get('/starships', {
+        params: { name: filter },
+      });
+    }
+
+    setLoading(true);
+
+    const subscription = defer(loadStarships).subscribe(async response => {
       try {
-        setLoading(true);
-        const response = await api.get('/starships', {
-          params: { name: filter },
-        });
         setStarships(response.data);
         setNextPage(response.headers.nextpage);
       } catch (error) {
@@ -35,9 +40,9 @@ export default function Home() {
       } finally {
         setLoading(false);
       }
-    }
+    });
 
-    loadStarships();
+    return () => subscription.unsubscribe();
   }, [filter]);
 
   async function loadMore() {

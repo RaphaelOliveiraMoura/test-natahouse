@@ -15,6 +15,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-toastify": "^5.5.0",
+    "rxjs": "^6.5.4",
     "styled-components": "^5.0.0"
   },
   "scripts": {
