@@ -94,7 +94,7 @@ export default function StarshipInfo({ location }) {
                 />
                 {stops !== null && distance && (
                   <p>
-                    Para percorrer {distance} MGLT com essa nave, são
+                    Para percorrer {distance} mega ligths com essa nave, são
                     necessárias&nbsp;
                     {stops} parada(s)
                   </p>

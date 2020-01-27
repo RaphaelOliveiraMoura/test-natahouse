@@ -76,7 +76,6 @@ export const Card = styled.div`
   flex-direction: column;
   margin: 16px;
   border-radius: 12px;
-  overflow: hidden;
   cursor: pointer;
 
   &:hover {
@@ -94,6 +93,8 @@ export const Card = styled.div`
     box-shadow: 1px 2px 1px 2px #0a080861;
     position: relative;
     transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
   }
 
   @keyframes skew-animation {
