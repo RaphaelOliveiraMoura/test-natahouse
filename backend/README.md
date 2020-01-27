@@ -41,6 +41,14 @@
 
 First, you need to create a **.env** file in root of application. The structure of this file is similar to the **.env.example** file, just copy and put the correct informations for all variables.
 
+In this case, the only one variable is `START_WARS_API_URL` and it represents the base URL to integrate with Star Wars API. The value that you need to put is `https://swapi.co/api/`.
+
+In the end your **.env** file will be like this:
+
+```
+START_WARS_API_URL=https://swapi.co/api/
+```
+
 ## Running application
 
 In development mode:

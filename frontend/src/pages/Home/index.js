@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MdSearch } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import Input from '~/components/Input';
 
@@ -22,36 +23,21 @@ export default function Home() {
     async function loadStarships() {
       try {
         setLoading(true);
-        const response = await api.get('/starships');
-        setStarships(response.data);
-        setNextPage(response.headers.nextpage);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadStarships();
-  }, []);
-
-  useEffect(() => {
-    async function loadStarshipsWithFilter() {
-      try {
-        setLoading(true);
         const response = await api.get('/starships', {
           params: { name: filter },
         });
         setStarships(response.data);
         setNextPage(response.headers.nextpage);
       } catch (error) {
-        console.log(error);
+        toast.error(
+          'Erro ao buscar dados. Certifique que está com o servidor backend executando'
+        );
       } finally {
         setLoading(false);
       }
     }
 
-    loadStarshipsWithFilter();
+    loadStarships();
   }, [filter]);
 
   async function loadMore() {
@@ -66,7 +52,9 @@ export default function Home() {
       setStarships([...starships, ...response.data]);
       setNextPage(response.headers.nextpage);
     } catch (error) {
-      console.log(error);
+      toast.error(
+        'Erro ao buscar dados. Certifique que está com o servidor backend executando'
+      );
     } finally {
       setLoading(false);
     }

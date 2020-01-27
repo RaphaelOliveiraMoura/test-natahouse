@@ -11,16 +11,16 @@ import api from '~/services/api';
 import history from '~/services/history';
 
 export default function StarshipInfo({ location }) {
+  if (!location || !location.state || !location.state.starship) {
+    history.push('/');
+  }
+
   const { starship } = location.state;
 
   const [distance, setDistance] = useState('');
   const [stops, setStops] = useState(null);
 
   const canCalculateStops = starship.MGLT !== 'unknown';
-
-  if (!starship) {
-    history.push('/');
-  }
 
   async function getStarshipStops(jouneyDistance) {
     const response = await api.post('/starships/stops', starship, {

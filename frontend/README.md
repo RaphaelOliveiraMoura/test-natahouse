@@ -36,13 +36,11 @@
 
 ### Prerequisites
 
-You need to have the backend application running, for default it runs in localhost:3333, so certify that you have the backend running in this port.
+You need to have the **backend application running**, for default it runs in localhost:3333, so certify that you have the backend running in this port.
 
 ## Running application
 
 I dont configurated the application to run in production mode, so you can only run that in development mode with:
-
-In development mode:
 
 ```
   ~ yarn start

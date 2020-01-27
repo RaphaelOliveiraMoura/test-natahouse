@@ -5,6 +5,7 @@ import {
   MdKeyboardArrowLeft,
   MdMonetizationOn,
   MdArrowForward,
+  MdCached,
 } from 'react-icons/md';
 
 import { Container, Card } from './styles';
@@ -73,27 +74,36 @@ export default function Carousel({
       />
 
       <div className="list-container">
-        {starships.map((item, index) => (
-          <Card
-            key={String(item.name)}
-            listShow={index >= offset && index < offset + listSize}
-            onClick={() =>
-              history.push(`/starships/${item.name}`, { starship: item })
-            }
-          >
-            <div className="card-container">
-              <div className="card-body">
-                <h1>{item.name}</h1>
-                <MdArrowForward color="#333" size={30} />
-              </div>
+        {starships.length > 0 ? (
+          starships.map((item, index) => (
+            <Card
+              key={String(item.name)}
+              listShow={index >= offset && index < offset + listSize}
+              onClick={() =>
+                history.push(`/starships/${item.name}`, { starship: item })
+              }
+            >
+              <div className="card-container">
+                <div className="card-body">
+                  <h1>{item.name}</h1>
+                  <MdArrowForward color="#333" size={30} />
+                </div>
 
-              <footer>
-                <p>{item.cost_in_credits}</p>
-                <MdMonetizationOn size={20} color="#fff" />
-              </footer>
-            </div>
-          </Card>
-        ))}
+                <footer>
+                  <p>{item.cost_in_credits}</p>
+                  <MdMonetizationOn size={20} color="#fff" />
+                </footer>
+              </div>
+            </Card>
+          ))
+        ) : (
+          <MdCached
+            className="reload"
+            color="#fff"
+            size={40}
+            onClick={() => window.location.reload()}
+          />
+        )}
       </div>
 
       <MdKeyboardArrowRight

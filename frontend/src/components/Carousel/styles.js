@@ -52,6 +52,14 @@ export const Container = styled.div`
     display: ${props => (props.isLoading ? 'block' : 'none')};
   }
 
+  .reload {
+    transition: all 0.4s;
+  }
+
+  .reload:hover {
+    transform: rotate(180deg);
+  }
+
   @keyframes dual-ring {
     0% {
       transform: rotate(0deg);
