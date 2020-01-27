@@ -43,7 +43,6 @@ export const Container = styled.div`
     display: block;
     width: 64px;
     height: 64px;
-    margin: 8px;
     border-radius: 50%;
     border: 6px solid #eb314c;
     border-color: #eb314c transparent #eb314c transparent;
